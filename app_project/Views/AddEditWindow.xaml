@@ -1,0 +1,307 @@
+﻿<Window x:Class="app_project.Views.AddEditWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Add Moment" Height="750" Width="700"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="NoResize"
+        Background="#1a1a1a">
+
+    <Window.Resources>
+        <Style x:Key="FieldLabel" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#BFA181"/>
+            <Setter Property="FontFamily" Value="Georgia"/>
+            <Setter Property="FontSize" Value="11"/>
+            <Setter Property="Margin" Value="0,0,0,4"/>
+        </Style>
+        <Style x:Key="ErrorLabel" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#e05555"/>
+            <Setter Property="FontSize" Value="11"/>
+            <Setter Property="Margin" Value="0,2,0,8"/>
+            <Setter Property="Visibility" Value="Collapsed"/>
+        </Style>
+        <Style x:Key="InputBox" TargetType="TextBox">
+            <Setter Property="Background" Value="#2a2a2a"/>
+            <Setter Property="Foreground" Value="#f0e6d3"/>
+            <Setter Property="BorderBrush" Value="#BFA181"/>
+            <Setter Property="BorderThickness" Value="0,0,0,1"/>
+            <Setter Property="Height" Value="34"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Padding" Value="8,4"/>
+            <Setter Property="CaretBrush" Value="#BFA181"/>
+        </Style>
+        <Style x:Key="GoldButton" TargetType="Button">
+            <Setter Property="Background" Value="#BFA181"/>
+            <Setter Property="Foreground" Value="#1a1a1a"/>
+            <Setter Property="FontFamily" Value="Georgia"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Height" Value="36"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Padding" Value="20,0"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                                CornerRadius="2" Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#e0c080"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="#b8904a"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="OutlineButton" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="#BFA181"/>
+            <Setter Property="FontFamily" Value="Georgia"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Height" Value="36"/>
+            <Setter Property="BorderBrush" Value="#BFA181"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Padding" Value="20,0"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="2" Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#2a2a2a"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="EditorToggleButton" TargetType="ToggleButton">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="#BFA181"/>
+            <Setter Property="BorderBrush" Value="#444"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Width" Value="32"/>
+            <Setter Property="Height" Value="28"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ToggleButton">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="2">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter Property="Background" Value="#BFA181"/>
+                                <Setter Property="Foreground" Value="#1a1a1a"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="BorderBrush" Value="#BFA181"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Margin="32,24">
+
+            <!-- Naslov prozora -->
+            <TextBlock x:Name="WindowTitleText"
+                       Text="ADD ICONIC MOMENT"
+                       FontFamily="Georgia" FontSize="18"
+                       FontWeight="Bold" Foreground="#BFA181"
+                       Margin="0,0,0,4"/>
+            <Rectangle Height="1" Fill="#BFA181" Opacity="0.3"
+                       Margin="0,0,0,24"/>
+
+            <!-- TITLE -->
+            <TextBlock Text="TITLE" Style="{StaticResource FieldLabel}"/>
+            <TextBox x:Name="TitleTextBox" Style="{StaticResource InputBox}"
+                     Margin="0,0,0,2"
+                     TextChanged="TitleTextBox_TextChanged"/>
+            <TextBlock x:Name="TitleError" Style="{StaticResource ErrorLabel}"
+                       Text="Title is required."/>
+
+            <!-- YEAR -->
+            <TextBlock Text="YEAR" Style="{StaticResource FieldLabel}"/>
+            <TextBox x:Name="YearTextBox" Style="{StaticResource InputBox}"
+                     Margin="0,0,0,2"
+                     TextChanged="YearTextBox_TextChanged"/>
+            <TextBlock x:Name="YearError" Style="{StaticResource ErrorLabel}"
+                       Text="Year must be a valid number (e.g. 1921)."/>
+
+            <!-- IMAGE -->
+            <TextBlock Text="IMAGE" Style="{StaticResource FieldLabel}"/>
+            <Grid Margin="0,0,0,2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBox x:Name="ImagePathTextBox"
+                         Style="{StaticResource InputBox}"
+                         IsReadOnly="True"
+                         Grid.Column="0"/>
+                <Button Content="BROWSE"
+                        Style="{StaticResource GoldButton}"
+                        Grid.Column="1" Margin="8,0,0,0"
+                        Width="90"
+                        Click="BrowseImageButton_Click"/>
+            </Grid>
+            <TextBlock x:Name="ImageError" Style="{StaticResource ErrorLabel}"
+                       Text="Please select an image."/>
+
+            <!-- Image Preview -->
+            <Border x:Name="ImagePreviewBorder"
+                    Background="#2a2a2a"
+                    BorderBrush="#333"
+                    BorderThickness="1"
+                    Height="120"
+                    Margin="0,8,0,16"
+                    Visibility="Collapsed">
+                <Image x:Name="ImagePreview"
+                       Stretch="Uniform"
+                       Margin="4"/>
+            </Border>
+
+            <!-- DESCRIPTION (RichTextBox editor) -->
+            <TextBlock Text="DESCRIPTION" Style="{StaticResource FieldLabel}"/>
+
+            <!-- Editor toolbar -->
+            <Border Background="#222" BorderBrush="#333"
+                    BorderThickness="1,1,1,0" Padding="6">
+                <WrapPanel>
+                    <!-- Bold -->
+                    <ToggleButton x:Name="BoldButton"
+                                  Style="{StaticResource EditorToggleButton}"
+                                  Margin="2" Click="BoldButton_Click"
+                                  ToolTip="Bold (Ctrl+B)">
+                        <TextBlock Text="B" FontWeight="Bold" FontSize="13"/>
+                    </ToggleButton>
+
+                    <!-- Italic -->
+                    <ToggleButton x:Name="ItalicButton"
+                                  Style="{StaticResource EditorToggleButton}"
+                                  Margin="2" Click="ItalicButton_Click"
+                                  ToolTip="Italic (Ctrl+I)">
+                        <TextBlock Text="I" FontStyle="Italic" FontSize="13"/>
+                    </ToggleButton>
+
+                    <!-- Underline -->
+                    <ToggleButton x:Name="UnderlineButton"
+                                  Style="{StaticResource EditorToggleButton}"
+                                  Margin="2" Click="UnderlineButton_Click"
+                                  ToolTip="Underline (Ctrl+U)">
+                        <TextBlock Text="U" FontSize="13">
+                            <TextBlock.TextDecorations>
+                                <TextDecoration Location="Underline"/>
+                            </TextBlock.TextDecorations>
+                        </TextBlock>
+                    </ToggleButton>
+
+                    <Separator Background="#444" Width="1"
+                               Margin="6,2"/>
+
+                    <!-- Font Family -->
+                    <ComboBox x:Name="FontFamilyComboBox"
+                              Width="140" Height="28"
+                              Margin="2"
+                              Background="#2a2a2a"
+                              Foreground="#f0e6d3"
+                              BorderBrush="#444"
+                              SelectionChanged="FontFamilyComboBox_SelectionChanged"
+                              ToolTip="Font family"/>
+
+                    <!-- Font Size -->
+                    <ComboBox x:Name="FontSizeComboBox"
+                              Width="60" Height="28"
+                              Margin="2"
+                              Background="#2a2a2a"
+                              Foreground="#f0e6d3"
+                              BorderBrush="#444"
+                              SelectionChanged="FontSizeComboBox_SelectionChanged"
+                              ToolTip="Font size"/>
+
+                    <Separator Background="#444" Width="1"
+                               Margin="6,2"/>
+
+                    <!-- Color picker -->
+                    <ComboBox x:Name="TextColorComboBox"
+                              Width="130" Height="28"
+                              Margin="2"
+                              Background="#2a2a2a"
+                              Foreground="#f0e6d3"
+                              BorderBrush="#444"
+                              SelectionChanged="TextColorComboBox_SelectionChanged"
+                              ToolTip="Text color"/>
+                </WrapPanel>
+            </Border>
+
+            <!-- RichTextBox -->
+            <RichTextBox x:Name="DescriptionRichTextBox"
+                         Height="160"
+                         Background="#2a2a2a"
+                         Foreground="#f0e6d3"
+                         BorderBrush="#333"
+                         BorderThickness="1,0,1,1"
+                         Padding="8"
+                         FontSize="13"
+                         SelectionChanged="DescriptionRichTextBox_SelectionChanged"
+                         TextChanged="DescriptionRichTextBox_TextChanged"/>
+
+            <!-- Status bar - broj rijeci -->
+            <Border Background="#222" BorderBrush="#333"
+                    BorderThickness="1,0,1,1"
+                    Padding="8,4" Margin="0,0,0,2">
+                <TextBlock x:Name="WordCountText"
+                           Text="Words: 0"
+                           Foreground="#888"
+                           FontSize="11"/>
+            </Border>
+
+            <TextBlock x:Name="DescriptionError"
+                       Style="{StaticResource ErrorLabel}"
+                       Text="Description is required."/>
+
+            <!-- Dugmad -->
+            <Grid Margin="0,16,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Button x:Name="SaveButton"
+                        Content="SAVE"
+                        Style="{StaticResource GoldButton}"
+                        Grid.Column="1"
+                        Margin="0,0,8,0"
+                        Width="100"
+                        Click="SaveButton_Click"/>
+                <Button Content="CANCEL"
+                        Style="{StaticResource OutlineButton}"
+                        Grid.Column="2"
+                        Width="100"
+                        Click="CancelButton_Click"/>
+            </Grid>
+
+        </StackPanel>
+    </ScrollViewer>
+</Window>
